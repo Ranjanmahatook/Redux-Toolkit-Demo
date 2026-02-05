@@ -1,0 +1,47 @@
+.cart {
+  padding: 20px;
+}
+
+.cart-row {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.cart-row img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+
+.cart-row button {
+  background: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.checkout {
+  background: green;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  cursor: pointer;
+}
+
+.empty {
+  padding: 20px;
+}
+.qty {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 6px 0;
+}
+
+.qty button {
+  padding: 2px 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
