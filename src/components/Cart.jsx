@@ -2,20 +2,25 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   increaseQty,
   decreaseQty,
-  removeFromCart,
+  applyCoupon,
   clearCart
 } from "../features/cart/cartSlice";
+import { useState } from "react";
 import "../styles/cart.css";
 
 export default function Cart() {
   const dispatch = useDispatch();
   const items = useSelector(state => state.cart.items);
+  const discount = useSelector(state => state.cart.discount);
+  const [code, setCode] = useState("");
 
-  const totalQty = items.reduce((s, i) => s + i.qty, 0);
-  const totalPrice = items.reduce(
+  const subtotal = items.reduce(
     (s, i) => s + i.price * i.qty,
     0
   );
+
+  const discountAmount = subtotal * (discount / 100);
+  const finalPrice = subtotal - discountAmount;
 
   if (!items.length) return <h2 className="empty">Cart is empty</h2>;
 
@@ -35,19 +40,27 @@ export default function Cart() {
               <button onClick={() => dispatch(increaseQty(i.id))}>+</button>
             </div>
 
-            <b>Total: ₹{i.price * i.qty}</b>
+            <b>₹{i.price * i.qty}</b>
           </div>
-
-          <button onClick={() => dispatch(removeFromCart(i.id))}>
-            Remove
-          </button>
         </div>
       ))}
 
+      <div className="coupon">
+        <input
+          placeholder="Enter coupon (SAVE10 / SAVE20)"
+          value={code}
+          onChange={e => setCode(e.target.value)}
+        />
+        <button onClick={() => dispatch(applyCoupon(code))}>
+          Apply
+        </button>
+      </div>
+
       <hr />
 
-      <h3>Total Items: {totalQty}</h3>
-      <h2>Total Price: ₹{totalPrice}</h2>
+      <p>Subtotal: ₹{subtotal}</p>
+      <p>Discount: −₹{discountAmount}</p>
+      <h2>Total: ₹{finalPrice.toFixed(2)}</h2>
 
       <button className="checkout" onClick={() => dispatch(clearCart())}>
         Checkout

@@ -1,47 +1,51 @@
 .cart {
-  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+  padding: 25px;
 }
 
 .cart-row {
   display: flex;
-  gap: 15px;
   align-items: center;
-  margin-bottom: 15px;
+  gap: 20px;
+  padding: 15px;
+  border-bottom: 2px solid #ee9b9b;
 }
 
 .cart-row img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
+  width: 90px;
+  object-fit: contain;
 }
 
-.cart-row button {
-  background: red;
+.info strong {
+  font-size: 16px;
+}
+
+.qty {
+  display: flex;
+  gap: 10px;
+  margin: 8px 0;
+}
+
+.qty button {
+  background: #222;
   color: white;
   border: none;
+  padding: 3px 10px;
   cursor: pointer;
 }
 
 .checkout {
-  background: green;
-  color: white;
-  padding: 8px 14px;
+  background: #ff6f00;
   border: none;
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 8px;
   cursor: pointer;
 }
 
 .empty {
-  padding: 20px;
-}
-.qty {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  margin: 6px 0;
-}
-
-.qty button {
-  padding: 2px 8px;
-  font-size: 16px;
-  cursor: pointer;
+  text-align: center;
+  padding: 40px;
 }
